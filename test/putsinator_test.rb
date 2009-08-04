@@ -1,5 +1,7 @@
 require 'test_helper'
 require "stringio"
+require "test/unit"
+require "putsinator"
 
 module Kernel
   def capture_stdout
@@ -12,19 +14,16 @@ module Kernel
   end
 end
 
-class PutsinatorTest < ActiveSupport::TestCase
-  def setup
-    @out
-  end
+class PutsinatorTest < Test::Unit::TestCase 
   
-  test "that 'puts' fingers file that did it" do
+  def test_that_puts_fingers_the_file_that_did_it
     stringy = "I'm putsing from a test whoooo"
     line = 0
-    
+    file = File.basename __FILE__.split(':').first
     out = capture_stdout do
       line = __LINE__; puts stringy
     end
     
-    assert_equal "[putsinator_test.rb:#{line}] #{stringy}", out
+    assert_equal "[#{file}:#{line}]\n#{stringy}\n", out.string
   end
 end
