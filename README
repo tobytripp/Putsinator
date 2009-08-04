@@ -1,9 +1,0 @@
-Putsinator
-==========
-
-Prepends the file and line number of any 'puts' statement that occurs within
-a test run.
-
-
-
-Copyright (c) 2009 Toby Tripp, released under the MIT license
