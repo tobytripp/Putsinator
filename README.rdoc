@@ -1,8 +1,8 @@
 === Putsinator
 
-Prepends the file and line number of any 'puts' statement that occurs within
-a test run, because the first step in reducing noisy test output is figuring
-out where it came from.
+Prepends the file and line number of any 'puts' statement that occurs within a
+test run, because the first step in reducing noisy test output is figuring out
+where it came from.
 
 
 
