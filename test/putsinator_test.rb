@@ -1,6 +1,6 @@
 require 'test_helper'
+
 require "stringio"
-require "test/unit"
 require "putsinator"
 
 module Kernel
@@ -15,7 +15,6 @@ module Kernel
 end
 
 class PutsinatorTest < Test::Unit::TestCase 
-  
   def test_that_puts_fingers_the_file_that_did_it
     stringy = "I'm putsing from a test whoooo"
     line = 0

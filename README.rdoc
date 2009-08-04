@@ -1,0 +1,10 @@
+Putsinator
+==========
+
+Prepends the file and line number of any 'puts' statement that occurs within
+a test run, because the first step in reducing noisy test output is figuring
+out where it came from.
+
+
+
+Copyright (c) 2009 Toby Tripp, released under the MIT license
