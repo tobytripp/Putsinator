@@ -3,20 +3,9 @@ require 'test_helper'
 require "stringio"
 require "putsinator"
 
-module Kernel
-  def capture_stdout
-    out = StringIO.new
-    $stdout = out
-    yield
-    return out
-  ensure
-    $stdout = STDOUT
-  end
-end
-
-class PutsinatorTest < Test::Unit::TestCase 
+class PutsinatorTest < Test::Unit::TestCase
   def setup
-    @file = File.basename __FILE__.split(':').first
+    @file = File.basename __FILE__
   end
     
   def test_that_puts_fingers_the_file_that_did_it
@@ -36,7 +25,7 @@ class PutsinatorTest < Test::Unit::TestCase
     out = capture_stdout do
       line = __LINE__; p string
     end
-    
+
     assert_equal "\"[#{@file}:#{line}]\"\n#{string.inspect}\n", out.string
   end
 end
