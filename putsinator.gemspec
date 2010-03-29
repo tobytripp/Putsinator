@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "init.rb",
      "install.rb",
      "lib/putsinator.rb",
+     "putsinator.gemspec",
      "test/putsinator_test.rb",
      "test/test_helper.rb",
      "uninstall.rb"
