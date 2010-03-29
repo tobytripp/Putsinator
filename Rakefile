@@ -5,6 +5,20 @@ require 'rake/rdoctask'
 desc 'Default: run unit tests.'
 task :default => :test
 
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "putsinator"
+    gemspec.summary = "Assassinate extraneous test output."
+    gemspec.description = "Add File:Line to any 'puts' call made within a test."
+    gemspec.email = "toby.tripp+github@gmail.com"
+    gemspec.homepage = "http://github.com/tobytripp/Putsinator"
+    gemspec.authors = ["Toby Tripp"]
+  end
+rescue LoadError
+  puts "Jeweler not available. Install it with: gem install jeweler"
+end
+
 desc 'Test the putsinator plugin.'
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
