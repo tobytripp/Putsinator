@@ -7,25 +7,21 @@ class PutsinatorTest < Test::Unit::TestCase
   def setup
     @file = File.basename __FILE__
   end
-    
-  def test_that_puts_fingers_the_file_that_did_it
-    stringy = "I'm putsing from a test whoooo"
-    
-    line = 0
-    out = capture_stdout do
-      line = __LINE__; puts stringy
-    end
-    
-    assert_equal "[#{@file}:#{line}]\n#{stringy}\n", out.string
-  end
-  
-  def test_that_p_fingers_the_culprit
-    string = "Foo"
-    line = 0
-    out = capture_stdout do
-      line = __LINE__; p string
-    end
 
-    assert_equal "\"[#{@file}:#{line}]\"\n#{string.inspect}\n", out.string
+  [:p, :puts].each do |meth|
+    define_method "test_that_#{meth}_fingers_the_file_that_did_it" do
+      stringy = "I'm #{meth}ing from a test whoooo"
+
+      line = 0
+      out = capture_stdout do
+        line = __LINE__; send(meth, stringy)
+      end
+
+      assert_match @file, out.string
+      assert_match /#{line}/, out.string
+      assert_match stringy, out.string
+      assert_match 'Putsinator', out.string # make sure the developer can find _us_ if desired
+    end
   end
+
 end
