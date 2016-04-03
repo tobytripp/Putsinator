@@ -13,6 +13,8 @@ module Kernel
   def noisy_output( outputter, *args )
     calls = caller_locations
     call = calls[1]
+    call = calls[2] if call.base_label === 'ap' # awesome_print was used
+
     file = File.basename call.path
     noise = "[#{file}:#{call.lineno}]"
 
