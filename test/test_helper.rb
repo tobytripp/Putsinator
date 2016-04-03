@@ -12,4 +12,11 @@ module Kernel
     $stdout = STDOUT
     $stderr = STDERR
   end
+
+  # emulate awesome_print's ap function
+  def ap(object)
+    puts object
+  end
+
+  module_function :ap
 end

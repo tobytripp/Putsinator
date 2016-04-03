@@ -1,19 +1,24 @@
 module Kernel
   def noisy_puts( *args )
-    file, line = caller[0].split(':')
-    file = File.basename file
-
-    default_puts "[#{file}:#{line}]", *args
+    noisy_output(:default_puts, *args)
   end
 
   alias_method :default_puts, :puts
   alias_method :puts, :noisy_puts
 
   def noisy_p( *args )
-    file, line = caller[0].split(':')
-    file = File.basename file
+    noisy_output(:default_p, *args)
+  end
 
-    default_p "[#{file}:#{line}]", *args
+  def noisy_output( outputter, *args )
+    calls = caller_locations
+    call = calls[1]
+    call = calls[2] if call.base_label === 'ap' # awesome_print was used
+
+    file = File.basename call.path
+    noise = "[#{file}:#{call.lineno}]"
+
+    send outputter, noise, *args
   end
 
   alias_method :default_p, :p

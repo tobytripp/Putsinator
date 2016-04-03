@@ -19,6 +19,17 @@ class PutsinatorTest < Test::Unit::TestCase
     assert_equal "[#{@file}:#{line}]\n#{stringy}\n", out.string
   end
 
+  def test_that_ap_fingers_the_file_that_did_it
+    stringy = "I'm aping from a test whoooo"
+
+    line = 0
+    out = capture_stdout do
+      line = __LINE__; ap stringy
+    end
+
+    assert_equal "[#{@file}:#{line}]\n#{stringy}\n", out.string
+  end
+
   def test_that_p_fingers_the_culprit
     string = "Foo"
     line = 0
